@@ -1,0 +1,41 @@
+>
+Terraform module:
+
+A module is a container for multiple resources that are used together. 
+You can use modules to create lightweight abstractions, so that you can 
+describe your infrastructure in terms of its architecture, 
+rather than directly in terms of physical objects.
+
+* Enable code  resuse
+* Supports versioning to maintain compactability
+* Stores code remotely
+* Enable easier testing
+* Enables encapsulation with all the seperate resources under one configuration block
+* Modules can be nested inside other module, allowing you to quickly spin ip whole seperate environmments
+* can be reffered using source attributes
+
+Supports Local and remote modules:
+  * Local modules are stores alongside the Terraform configurastion (in a sepearte directory, outside of 
+  each environmments but in the same repository) with source path ./ or ../
+  * Remote modules are stored externally in a sepearte repository and supports versioning.
+
+
+*Supporrted backend
+- Local path
+- Terraform registry
+- GitHub
+- bitBucket
+- HTTP URLs
+- S3 buckets
+- GCS buckets
+
+Modules requirements:
+  - must be on Github and must ba public repo, if using public registry
+  - Must be named terraform <PROVIDER>-<NAME>, where <NAME> reflects the type of infrastructure the module 
+  manages and <PROVIDER> is the main provider where it creats thay infrastructure. eg. terraform-google-vault 
+  or terraform-aws-ec2-instance
+  - must maintian x.y.z tags for release to identity modules versions. release tags names must be a 
+  semantic version which can optionaly be prefixed with a v for ecample, v1.0.4 and 0.9.4. tags that dont look
+  like version numbers are ignored.
+  - must maintian a standard module structure, which allows the registry to inspect the module and generate
+  documentaiton, track resource usage, parse submodules and example, and more.
